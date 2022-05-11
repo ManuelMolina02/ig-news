@@ -11,11 +11,11 @@
  O layout pode ser acessado através do Figma, basta [clicar aqui](https://www.figma.com/file/u1DuTi6CU9pgeBy1Afc2tZ/ig.news?node-id=1%3A3)
 
  <h1 align="center">
-    <img alt="monitor_example" title="monitor_example" src="./public/images/img1.png" width="100%" />
+    <img alt="example_image" title="example_image" src="./public/images/img.png" width="100%" />
 </h1>
 
  <h1 align="center">
-    <img alt="monitor_example" title="monitor_example" src="./public/images/img2.png" width="100%" />
+    <img alt="example_image1" title="example_image1" src="./public/images/img1.png" width="100%" />
 </h1>
  ## 🚀 Tecnologias
 
