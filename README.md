@@ -17,6 +17,8 @@
  <h1 align="center">
     <img alt="example_image" title="example_image" src="./public/images/img1.png" width="100%" />
 </h1>
+
+
  ## 🚀 Tecnologias
 
 - [NextJS](https://nodejs.org/en/)
