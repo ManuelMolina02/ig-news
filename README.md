@@ -15,7 +15,7 @@
 </h1>
 
  <h1 align="center">
-    <img alt="example_image" title="example_image" src="./public/images/img1.png" width="100%" />
+    <img alt="example_image1" title="example_image1" src="./public/images/img1.png" width="100%" />
 </h1>
 
 
