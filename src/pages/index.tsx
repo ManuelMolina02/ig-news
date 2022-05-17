@@ -35,7 +35,7 @@ export default function Home({ product }: HomeProps) {
 
         </section>
 
-        <img src="/images/girl-coding.svg" alt="Girl coding" />
+        <img src="/images/girl-coding2.svg" alt="Girl coding" />
       </main>
     </>
   )
