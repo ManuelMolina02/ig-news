@@ -3,8 +3,22 @@ import Head from "next/head";
 import { getPrismicClient } from "../../service/prismic";
 import styles from './styles.module.scss';
 import Prismic from "@prismicio/client";
+import { RichText } from 'prismic-dom'
+import Link from "next/link";
 
-export default function Posts() {
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  updatedAt: string;
+
+}
+
+interface postsProps {
+  posts: Post[]
+}
+
+export default function Posts({ posts }: postsProps) {
   return (
     <>
       <Head>
@@ -13,29 +27,19 @@ export default function Posts() {
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          <a href="#">
-            <time>12 de março de 2021</time>
-            <strong>Teste de post, teste</strong>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
-          </a>
 
-          <a href="#">
-            <time>12 de março de 2021</time>
-            <strong>Teste de post, teste</strong>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
-          </a>
+          {
+            posts.map(post => (
+              <Link key={post.slug} href={`/posts/${post.slug}`}>
+                <a href='#'>
+                  <time>{post.updatedAt}</time>
+                  <strong>{post.title}</strong>
+                  <p>{post.excerpt}</p>
+                </a>
+              </Link>
+            ))
+          }
 
-          <a href="#">
-            <time>12 de março de 2021</time>
-            <strong>Teste de post, teste</strong>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
-          </a>
-
-          <a href="#">
-            <time>12 de março de 2021</time>
-            <strong>Teste de post, teste</strong>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
-          </a>
         </div>
       </main>
     </>
@@ -45,17 +49,27 @@ export default function Posts() {
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
-  const response = await prismic.query([
+  const response = await prismic.query<any>([
     Prismic.Predicates.at('document.type', 'posts')
   ], {
     fetch: ['posts.title', 'posts.content'],
     pageSize: 20,
   })
 
-  console.log('response: ', response);
-
+  const posts = response.results.map(post => ({
+    slug: post.uid,
+    title: RichText.asText(post.data.title),
+    excerpt: post.data.content.find(content => content.type === 'paragraph').text ?? '',
+    updatedAt: new Date(post.first_publication_date).toLocaleString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    }),
+  }))
 
   return {
-    props: {}
+    props: {
+      posts
+    }
   }
 }
