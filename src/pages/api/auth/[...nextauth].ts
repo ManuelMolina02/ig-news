@@ -19,6 +19,42 @@ export default NextAuth({
     }),
   ],
   callbacks: {
+    async session({ session }) {
+      try {
+        const userActiveSubscripton = await fauna.query(
+          q.Get(
+            q.Intersection([
+              q.Match(
+                q.Index("subscription_by_user_ref"),
+                q.Select(
+                  "ref",
+                  q.Get(
+                    q.Match(
+                      q.Index("user_by_email"),
+                      q.Casefold(session.user.email)
+                    )
+                  )
+                )
+              ),
+              q.Match(q.Index("subscription_by_status"), "active"),
+            ])
+          )
+        );
+
+        console.log(userActiveSubscripton);
+
+        return {
+          ...session,
+          activeUserSubscription: userActiveSubscripton,
+        };
+      } catch {
+        return {
+          ...session,
+          activeUserSubscription: null,
+        };
+      }
+    },
+
     async signIn({ user, account, profile }) {
       const { email } = user;
       try {
