@@ -16,6 +16,7 @@ export async function saveSubscription(
       q.Get(q.Match(q.Index("user_by_stripe_customer_id"), customerId))
     )
   );
+  console.log("buscando ref de usuario: ", userRef);
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
@@ -26,25 +27,28 @@ export async function saveSubscription(
     price_id: subscription.items.data[0].price.id,
   };
 
-  try {
-    if (createAction) {
-      await fauna.query(
-        q.Create(q.Collection("subscriptions"), {
-          data: subscriptionData,
-        })
-      );
-    } else {
-      await fauna.query(
-        q.Replace(
-          q.Select(
-            "ref",
-            q.Get(q.Match(q.Index("subscription_by_id"), subscriptionId))
-          ),
-          { data: subscriptionData }
-        )
-      );
-    }
-  } catch (e) {
-    console.log(e);
+  console.log("createAction: ", createAction);
+
+  if (createAction) {
+    //console.log("entrei no create com o data: ", subscriptionData);
+    //console.log("subscriptionId no create: ", subscriptionId);
+    await fauna.query(
+      q.Create(q.Collection("subscriptions"), {
+        data: subscriptionData,
+      })
+    );
+  } else {
+    //console.log("entrei no update com o data: ", subscriptionData);
+    //console.log("subscriptionId no update: ", subscriptionId);
+
+    await fauna.query(
+      q.Replace(
+        q.Select(
+          "ref",
+          q.Get(q.Match(q.Index("subscription_by_id"), subscriptionId))
+        ),
+        { data: subscriptionData }
+      )
+    );
   }
 }

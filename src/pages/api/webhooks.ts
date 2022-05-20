@@ -8,9 +8,7 @@ async function buffer(readable: Readable) {
   const chunks = [];
 
   for await (const chunk of readable) {
-    chunks.push(chunk);
-
-    typeof chunk === "string" ? Buffer.from(chunk) : chunk;
+    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
   }
 
   return Buffer.concat(chunks);
@@ -29,17 +27,11 @@ const relevantEvents = new Set([
 ]);
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  //console.log("entrei no webhooks: ", req.method);
-
   if (req.method === "POST") {
     const buf = await buffer(req);
     const secret = req.headers["stripe-signature"];
 
-    //console.log("mostrando buf: ", buf);
-    //console.log("mostrando secret: ", secret);
-
     let event: Stripe.Event;
-    console.log("mostrando event 1: ", event);
 
     try {
       event = stripe.webhooks.constructEvent(
@@ -47,15 +39,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
       );
-
-      console.log("mostrando event 2: ", event);
     } catch (err) {
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
     const { type } = event;
-
-    console.log("mostrando event final: ", event);
 
     if (relevantEvents.has(type)) {
       try {
@@ -63,7 +51,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           case "customer.subscription.updated":
           case "customer.subscription.deleted":
             const subscription = event.data.object as Stripe.Subscription;
-            console.log("checkout session: ", subscription);
 
             await saveSubscription(
               subscription.id,
@@ -76,8 +63,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const checkoutSession = event.data
               .object as Stripe.Checkout.Session;
 
-            console.log("checkout session: ", checkoutSession);
-
             await saveSubscription(
               checkoutSession.subscription.toString(),
               checkoutSession.customer.toString()
@@ -88,6 +73,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             throw new Error("Unhandled event");
         }
       } catch (err) {
+        //console.log(err);
+
         return res.json({ error: "Webhook handler failed." });
       }
     }

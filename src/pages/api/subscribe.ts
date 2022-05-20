@@ -15,17 +15,12 @@ type User = {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("entrei no subscribe: ", req.method);
-
   if (req.method === "POST") {
     const session = await getSession({ req });
-    console.log("buscando uma session: ", session);
 
     const user = await fauna.query<User>(
       q.Get(q.Match(q.Index("user_by_email"), q.Casefold(session.user.email)))
     );
-
-    console.log("mostrando um usuário: ", user);
 
     let customerId = user.data.stripe_customer_id;
 
@@ -55,8 +50,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       success_url: `${process.env.STRIPE_SUCCESS_URL}`,
       cancel_url: `${process.env.STRIPE_CANCEL_URL}`,
     });
-
-    console.log("mostrando checkout session: ", checkoutSession);
 
     return res.status(200).json({ sessionId: checkoutSession.id });
   } else {
