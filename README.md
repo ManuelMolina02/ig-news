@@ -5,7 +5,7 @@
 <br/>
 
 ## 💻 Projeto
- Essa aplicação demonstra uma plataforma que oferece conteúdos sobre ReactJS, onde é possível conectar-se fazendo autenticação com github, virar um inscrito do blog e após a validação do pagamento é possível ter acesso a todos os conteúdos disponiveis.
+ Essa aplicação demonstra uma plataforma que oferece conteúdos sobre ReactJS, onde é possível conectar-se fazendo autenticação com github, virar um inscrito do blog e após a validação do pagamento é possível ter acesso a todos os conteúdos disponiveis. Já os usuários não inscritos visualizam apenas a introdução de cada matéria.
 
 ## 🔖 Layout
  O layout pode ser acessado através do Figma, basta [clicar aqui](https://www.figma.com/file/u1DuTi6CU9pgeBy1Afc2tZ/ig.news?node-id=1%3A3)
