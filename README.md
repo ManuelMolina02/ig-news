@@ -1,5 +1,5 @@
 <h1 align="center">
-   </> ig.news | Conteúdo de prático - Ignite ReactJS 
+   </> ig.news | Conteúdo Prático - Ignite ReactJS [Módulo 03]
 </h1>
 
 <br/>
@@ -27,8 +27,8 @@
 ### 📡 Ferramentas Complementares
 
 - [Prismic](https://prismic.io/)
-- [Eslint](https://eslint.org/)
 - [Stripe](https://stripe.com/br)
+- [Eslint](https://eslint.org/)
 
 <br/>
 
@@ -48,6 +48,12 @@ Após baixar o projeto, acesse o repositório via terminal e execute os seguinte
 ```sh
 yarn install
 yarn dev
+```
+
+Visualizar status da API com Stripe nos webhooks:
+
+```sh
+stripe listen --forward-to localhost:3000/api/webhooks
 ```
 
 <br/>
