@@ -1,10 +1,13 @@
-import { GetStaticProps } from "next";
-import Head from "next/head";
 import { getPrismicClient } from "../../service/prismic";
-import styles from './styles.module.scss';
-import Prismic from "@prismicio/client";
+import { GetStaticProps } from "next";
+import { useState } from "react";
 import { RichText } from 'prismic-dom'
+import Prismic from "@prismicio/client";
+
+import Head from "next/head";
+import styles from './styles.module.scss';
 import Link from "next/link";
+import { Spinner } from "../../components/Spinner";
 
 type Post = {
   slug: string;
@@ -19,6 +22,11 @@ interface postsProps {
 }
 
 export default function Posts({ posts }: postsProps) {
+  const [handleClick, setHandleClick] = useState(false);
+
+  function showClick() {
+    setHandleClick(true);
+  }
 
   return (
     <>
@@ -27,21 +35,29 @@ export default function Posts({ posts }: postsProps) {
       </Head>
 
       <main className={styles.container}>
-        <div className={styles.posts}>
+        {
+          handleClick ? (
+            <div className={styles.spinnerPosts}>
+              <Spinner color="#ffffff4f" size='lg' />
+            </div>
+          ) : (
+            <div className={styles.posts}>
 
-          {
-            posts.map(post => (
-              <Link key={post.slug} href={`/posts/${post.slug}`}>
-                <a href='#'>
-                  <time>{post.updatedAt}</time>
-                  <strong>{post.title}</strong>
-                  <p>{post.excerpt}</p>
-                </a>
-              </Link>
-            ))
-          }
+              {
+                posts.map(post => (
+                  <Link key={post.slug} href={`/posts/${post.slug}`} >
+                    <a href='#' onClick={showClick}>
+                      <time>{post.updatedAt}</time>
+                      <strong>{post.title}</strong>
+                      <p>{post.excerpt}</p>
+                    </a>
+                  </Link>
+                ))
+              }
 
-        </div>
+            </div>
+          )
+        }
       </main>
     </>
   )
