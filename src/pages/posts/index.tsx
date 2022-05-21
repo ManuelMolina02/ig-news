@@ -19,6 +19,7 @@ interface postsProps {
 }
 
 export default function Posts({ posts }: postsProps) {
+
   return (
     <>
       <Head>
