@@ -21,3 +21,17 @@
     transform: scale3d(1.03, 1.03, 1);
   }
 }
+
+.spinner {
+  color: var(--pink-800);
+  margin-right: 15px;
+
+  animation:spin 1.6s linear infinite;
+
+  @keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg); 
+        transform:rotate(360deg); 
+    } 
+  }
+}

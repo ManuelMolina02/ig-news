@@ -1,6 +1,7 @@
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { ImSpinner2 } from 'react-icons/im';
 import { api } from '../../service/api';
 import { getStripeJs } from '../../service/stripe-js';
 import styles from './styles.module.scss'
@@ -23,7 +24,7 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
       return
     }
 
-    if (session.activeUserSubscription !== undefined) {
+    if (session?.activeUserSubscription !== undefined) {
       router.push('/posts')
       return
     }
@@ -49,7 +50,12 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
       onClick={handleSubscribe}
     >
       {
-        !loading ? 'Subscribe now' : 'Loading...'
+        !loading ? 'Subscribe now' :
+
+          <>
+            <ImSpinner2 className={styles.spinner} />
+            Loading...
+          </>
       }
     </button>
 
