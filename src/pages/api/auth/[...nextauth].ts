@@ -41,8 +41,6 @@ export default NextAuth({
           )
         );
 
-        console.log(userActiveSubscripton);
-
         return {
           ...session,
           activeUserSubscription: userActiveSubscripton,
@@ -50,7 +48,6 @@ export default NextAuth({
       } catch {
         return {
           ...session,
-          activeUserSubscription: null,
         };
       }
     },

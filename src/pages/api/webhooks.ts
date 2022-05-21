@@ -65,7 +65,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             await saveSubscription(
               checkoutSession.subscription.toString(),
-              checkoutSession.customer.toString()
+              checkoutSession.customer.toString(),
+              true
             );
 
             break;
@@ -73,8 +74,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             throw new Error("Unhandled event");
         }
       } catch (err) {
-        //console.log(err);
-
+        console.log(err);
         return res.json({ error: "Webhook handler failed." });
       }
     }
