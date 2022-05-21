@@ -1,9 +1,9 @@
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { ImSpinner2 } from 'react-icons/im';
 import { api } from '../../service/api';
 import { getStripeJs } from '../../service/stripe-js';
+import { Spinner } from '../Spinner';
 import styles from './styles.module.scss'
 
 interface SubscribeButtonProps {
@@ -53,7 +53,7 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
         !loading ? 'Subscribe now' :
 
           <>
-            <ImSpinner2 className={styles.spinner} />
+            <Spinner color='var(--pink-800)' size='sm' mg='0 10px' />
             Loading...
           </>
       }

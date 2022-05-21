@@ -1,9 +1,9 @@
 import styles from './styles.module.scss';
 import { FaGithub } from 'react-icons/fa';
 import { FiX } from 'react-icons/fi';
-import { ImSpinner2 } from 'react-icons/im';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
+import { Spinner } from '../Spinner';
 
 
 export function SignInButton() {
@@ -34,7 +34,7 @@ export function SignInButton() {
       {
         loadingSingIn
           ?
-          <ImSpinner2 className={styles.spinner} color='#ffffffcb' />
+          <Spinner color='#ffffffcb' size='sm' />
           :
           <FaGithub color='#ffffffcb' />
       }
