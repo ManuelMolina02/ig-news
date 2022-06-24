@@ -1,8 +1,10 @@
 
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useEffect } from 'react'
 import { SubscribeButton } from '../components/SubscribeButton'
-import { stripe } from '../service/stripe'
+import { useTheme } from '../contexts/theme'
+import { stripe } from '../services/stripe'
 import styles from '../styles/home.module.scss'
 
 
@@ -15,14 +17,18 @@ interface HomeProps {
 
 
 export default function Home({ product }: HomeProps) {
+  const { theme, color } = useTheme()
+
+
   return (
-    <>
+    <div className={styles.container} style={{ backgroundColor: theme.bgPrimary }}>
       <Head>
         <title>home | ig.news </title>
       </Head>
 
-      <main className={styles.contentContainer}>
-        <section className={styles.hero}>
+      <main className={styles.contentContainer} >
+        <section className={styles.hero} style={{ color: theme.color }}>
+
           <span>👏 Hey, welcome</span>
           <h1>News about the <span>React</span> world.</h1>
 
@@ -35,9 +41,12 @@ export default function Home({ product }: HomeProps) {
 
         </section>
 
-        <img src="/images/girl-coding2.svg" alt="Girl coding" />
+
+        <img key={color.name} src={color.img} alt="Girl coding" />
+
+
       </main>
-    </>
+    </div>
   )
 }
 
