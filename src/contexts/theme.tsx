@@ -7,34 +7,6 @@ interface DefineThemeProps {
   children: ReactNode
 }
 
-interface themeProps {
-  bg: bgProps,
-  color: colorProps,
-}
-
-type bgProps = {
-  name: string,
-  defaultColor: string,
-  primary: string,
-  secondary: string,
-  tertiary: string,
-
-  contrastColor: string,
-  contrastLight: string,
-  contrastDark: string,
-}
-
-type colorProps = {
-  name: string,
-  match: string[],
-  primary: string,
-  secondary: string,
-  tertiary: string,
-
-  contrastColor: string,
-  contrastLight: string,
-  contrastDark: string,
-}
 
 //criando um contexto
 export const DefineThemeContext = createContext({} as any);
@@ -42,20 +14,24 @@ export const DefineThemeContext = createContext({} as any);
 //criando um provider
 export function DefineThemeProvider({ children }: DefineThemeProps) {
 
-  //tema definido
+  function findItem(data: Array<any>, key: string) {
+    return data.find(item => item.name === key)
+  }
+
+  //variaveis de itens selecionados
   const [themeSelected, setThemeSelected] = useState('dark');
-
   const [colorSelected, setColorSelected] = useState('analogous');
+  const [imageSelected, setImageSelected] = useState('girl-coding-1')
 
+  //variaveis armazenam os itens ativos
   const [theme, setTheme] = useState({})
-
   const [color, setColor] = useState({})
+  const [image, setImage] = useState({})
 
-  //função que define o tema
-  const newTheme = themes.theme.find((item) => item.name === themeSelected);
-
-  //função que define o tema
-  const newColors = themes.colors.find((item) => item.name === colorSelected);
+  //funções que definem o item ativo
+  const newTheme = findItem(themes.theme, themeSelected)
+  const newColors = findItem(themes.colors, colorSelected)
+  const newImage = findItem(themes.images, imageSelected)
 
   useEffect(() => {
     setTheme(newTheme)
@@ -65,14 +41,24 @@ export function DefineThemeProvider({ children }: DefineThemeProps) {
     setColor(newColors)
   }, [colorSelected])
 
-  //preparando constantes para envio
+
+  useEffect(() => {
+    const selectedImageType = findItem(newImage.styles, colorSelected)
+    setImage({
+      ...selectedImageType,
+      name: newImage.name
+    })
+  }, [imageSelected, colorSelected])
+
+  //preparando variaveis utilizadas
   const variablesTheme = {
     setThemeSelected,
     setColorSelected,
+    setImageSelected
   }
 
   return (
-    <DefineThemeContext.Provider value={{ variablesTheme, theme, color }
+    <DefineThemeContext.Provider value={{ variablesTheme, theme, color, image }
     }>
       {children}
     </DefineThemeContext.Provider >

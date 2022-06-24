@@ -3,7 +3,6 @@
   border-radius: 3rem;
   background-color: var(--gray-850);
 
-
   border: 0;
   padding: 0 0.8rem;
   display: flex;
@@ -41,18 +40,18 @@
   }
 
   .settingsContent{
-    width: 180px;
+    width: 220px;
     transition: all .5s linear;
     animation: expandDown 2s ;
     animation-timing-function: 1s;
     box-shadow: 0px 0px 4px 2px #5c5c5c15;
 
-    max-height: 420px;
+    max-height: 596px;
 
     position: absolute;
     z-index: 100;
     top: 16px;
-    right: 3.4rem;
+    right: .6rem;
 
     border-radius: 12px;
     padding: 2rem;
@@ -67,7 +66,7 @@
     div {
       strong {
         font-size: 16px;
-        animation: fadeItens .3s linear;
+        animation: fadeItens .8s linear;
 
       }
       
@@ -80,7 +79,7 @@
         width: 100%;
         padding: 0 0.8rem;
 
-        animation: fadeItens .5s linear;
+        animation: fadeItens 1s linear;
 
         height: 3.4rem;
         border-radius: 8px;
