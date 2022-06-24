@@ -17,8 +17,7 @@ interface HomeProps {
 
 
 export default function Home({ product }: HomeProps) {
-  const { theme, color } = useTheme()
-
+  const { theme, color, image } = useTheme()
 
   return (
     <div className={styles.container} style={{ backgroundColor: theme.bgPrimary }}>
@@ -42,7 +41,7 @@ export default function Home({ product }: HomeProps) {
         </section>
 
 
-        <img key={color.name} src={color.img} alt="Girl coding" />
+        <img key={image.url} src={image.url} alt="Girl coding" />
 
 
       </main>
