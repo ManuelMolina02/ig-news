@@ -29,7 +29,10 @@ export function Header() {
           </ActiveLink>
         </nav>
 
-        <SignInButton />
+        <div className={styles.signInBtn}>
+          <SignInButton />
+        </div>
+
         <ConfigsButton />
 
       </div>

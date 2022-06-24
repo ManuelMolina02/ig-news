@@ -7,6 +7,8 @@ export const themes = {
       color: "#e5e5e5",
 
       constrastColor: "#ffffffcb",
+
+      shadow: "0px 0px 10px 2px #5050504f",
     },
     {
       name: "light",
@@ -15,6 +17,7 @@ export const themes = {
       color: "#1f2729",
 
       constrastColor: "#ffffffcb",
+      shadow: "0px 0px 10px 2px #5050504f",
     },
   ],
   colors: [

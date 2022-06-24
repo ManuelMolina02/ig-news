@@ -5,7 +5,7 @@ import { useTheme } from '../../contexts/theme';
 
 export function ConfigsButton() {
 
-  const [showSettings, setShowSettings] = useState(true)
+  const [showSettings, setShowSettings] = useState(false)
   const [styleColor, setStyleColor] = useState('')
 
   const { theme, color, variablesTheme } = useTheme();
@@ -18,8 +18,6 @@ export function ConfigsButton() {
 
     variablesTheme.setThemeSelected(themeSelected)
   }
-
-  console.log(theme);
 
 
   function setColor(colorSelected: string) {
@@ -42,6 +40,7 @@ export function ConfigsButton() {
         <IoMdSettings color='#a3afa8' />
       </button>
 
+
       {
         showSettings && (
           <div className={styles.settingsContainer} >
@@ -51,7 +50,6 @@ export function ConfigsButton() {
               <br />
               <div>
                 <strong>themes</strong>
-
                 <button
                   style={{ backgroundColor: theme.bgSecondary, color: theme.color, borderColor: theme.name === 'dark' ? styleColor : 'transparent' }}
                   className={styles.settingOptions}

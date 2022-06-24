@@ -11,7 +11,7 @@
  O layout pode ser acessado através do Figma, basta [clicar aqui](https://www.figma.com/file/u1DuTi6CU9pgeBy1Afc2tZ/ig.news?node-id=1%3A3)
 
  <h1 align="center">
-    <img alt="example_image" title="example_image" src="./public/images/img.png" width="100%" />
+    <img alt="example_image" title="example_image" src="./public/images/layout.gif" width="100%" />
 </h1>
 
 
