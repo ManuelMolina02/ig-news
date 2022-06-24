@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next"
 import { getSession } from "next-auth/react";
 import Head from "next/head";
 import { RichText } from "prismic-dom";
+import { useTheme } from "../../contexts/theme";
 import { getPrismicClient } from "../../services/prismic";
 import styles from './post.module.scss'
 
@@ -15,13 +16,14 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
+  const { theme } = useTheme()
   return (
-    <>
+    <div className={styles.container} style={{ backgroundColor: theme.bgPrimary, color: theme.color }}>
       <Head>
         <title>{post.title} | ig.news</title>
       </Head>
 
-      <main className={styles.container}>
+      <main className={styles.postContainer}>
         <article className={styles.post}>
           <h1>{post.title}</h1>
           <time>{post.updatedAt}</time>
@@ -31,7 +33,7 @@ export default function Post({ post }: PostProps) {
           />
         </article>
       </main>
-    </>
+    </div>
   )
 }
 

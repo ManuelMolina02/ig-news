@@ -1,6 +1,6 @@
 import { getPrismicClient } from "../../services/prismic";
 import { GetStaticProps } from "next";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RichText } from 'prismic-dom'
 import Prismic from "@prismicio/client";
 
@@ -8,6 +8,7 @@ import Head from "next/head";
 import styles from './styles.module.scss';
 import Link from "next/link";
 import { Spinner } from "../../components/Spinner";
+import { useTheme } from "../../contexts/theme";
 
 type Post = {
   slug: string;
@@ -22,33 +23,64 @@ interface postsProps {
 }
 
 export default function Posts({ posts }: postsProps) {
+  const { theme, color } = useTheme()
   const [handleClick, setHandleClick] = useState(false);
 
   function showClick() {
     setHandleClick(true);
   }
 
+  const [elementMouseHover, setElementMouseHover] = useState('')
+  const [mouseActive, setMouseActive] = useState(false)
+
+  function enterSection(slug: string) {
+    setElementMouseHover(slug)
+    setMouseActive(true)
+  }
+
+  function closeSection(slug: string) {
+    setElementMouseHover(slug)
+    setMouseActive(false)
+  }
+
+  function StrongComponent(slug: string, title: string) {
+    let style = {
+      color: theme.color
+    }
+
+    if (mouseActive && slug === elementMouseHover) {
+      style = {
+        color: color.primary
+      }
+    }
+
+    return (
+      <strong style={style}>{title} </strong>
+    )
+  }
+
+
   return (
-    <>
+    <div className={styles.container} style={{ backgroundColor: theme.bgPrimary, color: theme.color }}>
       <Head>
         <title>posts | ig.news</title>
       </Head>
 
-      <main className={styles.container}>
+      <main className={styles.postCcontainer}>
         {
           handleClick ? (
             <div className={styles.spinnerPosts}>
               <Spinner color="#ffffff4f" size='lg' />
             </div>
           ) : (
-            <div className={styles.posts}>
+            <div className={styles.posts} >
 
               {
                 posts.map(post => (
-                  <Link key={post.slug} href={`/posts/${post.slug}`} >
-                    <a href='#' onClick={showClick}>
+                  <Link key={post.slug} href={`/posts/${post.slug}`}  >
+                    <a href='#' onClick={showClick} onMouseEnter={() => enterSection(post.slug)} onMouseLeave={() => closeSection(post.slug)}>
                       <time>{post.updatedAt}</time>
-                      <strong>{post.title}</strong>
+                      {StrongComponent(post.slug, post.title)}
                       <p>{post.excerpt}</p>
                     </a>
                   </Link>
@@ -58,8 +90,8 @@ export default function Posts({ posts }: postsProps) {
             </div>
           )
         }
-      </main>
-    </>
+      </main >
+    </div >
   )
 }
 

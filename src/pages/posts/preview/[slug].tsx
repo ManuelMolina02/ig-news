@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { RichText } from "prismic-dom";
 import { useEffect } from "react";
+import { useTheme } from "../../../contexts/theme";
 import { getPrismicClient } from "../../../services/prismic";
 import styles from '../post.module.scss'
 
@@ -20,6 +21,7 @@ interface PostPreviewProps {
 export default function PostPreview({ post }: PostPreviewProps) {
   const { data: session } = useSession();
   const router = useRouter();
+  const { theme, color } = useTheme()
 
 
 
@@ -32,12 +34,12 @@ export default function PostPreview({ post }: PostPreviewProps) {
 
 
   return (
-    <>
+    <div className={styles.container} style={{ backgroundColor: theme.bgPrimary, color: theme.color }}>
       <Head>
         <title>{post.title} | ig.news</title>
       </Head>
 
-      <main className={styles.container}>
+      <main className={styles.postContainer}>
         <article className={styles.post}>
           <h1>{post.title}</h1>
           <time>{post.updatedAt}</time>
@@ -46,16 +48,16 @@ export default function PostPreview({ post }: PostPreviewProps) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
-          <div className={styles.continueReading}>
+          <div className={styles.continueReading} style={{ backgroundColor: theme.bgSecondary }}>
             Wanna continue reading?
             <Link href={'/'}>
-              <a href="">Subcribe now 🤗</a>
+              <a href="" style={{ color: color.primary }}>Subcribe now 🤗</a>
             </Link>
 
           </div>
         </article>
       </main>
-    </>
+    </div>
   )
 }
 
