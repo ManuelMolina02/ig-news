@@ -1,4 +1,4 @@
-import { getPrismicClient } from "../../service/prismic";
+import { getPrismicClient } from "../../services/prismic";
 import { GetStaticProps } from "next";
 import { useState } from "react";
 import { RichText } from 'prismic-dom'

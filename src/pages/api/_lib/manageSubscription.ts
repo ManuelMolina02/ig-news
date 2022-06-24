@@ -1,5 +1,5 @@
-import { fauna } from "../../../service/faunadb";
-import { stripe } from "../../../service/stripe";
+import { fauna } from "../../../services/faunadb";
+import { stripe } from "../../../services/stripe";
 
 import { query as q } from "faunadb";
 

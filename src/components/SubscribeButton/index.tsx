@@ -1,8 +1,8 @@
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { api } from '../../service/api';
-import { getStripeJs } from '../../service/stripe-js';
+import { api } from '../../services/api';
+import { getStripeJs } from '../../services/stripe-js';
 import { Spinner } from '../Spinner';
 import styles from './styles.module.scss'
 

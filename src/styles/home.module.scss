@@ -1,3 +1,9 @@
+.container{
+  transition: all .75s linear;
+
+ 
+}
+
 .contentContainer {
   max-width: 1120px;
   margin: 0 auto;
@@ -7,11 +13,20 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  img {
+    animation: slidein .75s ease-in-out;
+  }
+
 }
+
+
+
+
 
 .hero {
   max-width: 600px;
-  
+
   > span {
     font-size: 1.5rem;
     font-weight: bold;
@@ -43,7 +58,20 @@
     }
   }
 
+
   button {
     margin-top: 2.5rem;
+  }
+
+}
+
+
+@keyframes slidein {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
   }
 }

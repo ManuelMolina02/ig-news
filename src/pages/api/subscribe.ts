@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { stripe } from "../../service/stripe";
+import { stripe } from "../../services/stripe";
 import { getSession } from "next-auth/react";
-import { fauna } from "../../service/faunadb";
+import { fauna } from "../../services/faunadb";
 import { query as q } from "faunadb";
 
 type User = {
