@@ -1,6 +1,7 @@
 
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { SubscribeButton } from '../components/SubscribeButton'
 import { useTheme } from '../contexts/theme'
@@ -11,7 +12,7 @@ import styles from '../styles/home.module.scss'
 interface HomeProps {
   product: {
     priceId: string,
-    amount: number,
+    amount: string,
   }
 }
 
@@ -36,13 +37,11 @@ export default function Home({ product }: HomeProps) {
             <span>for {product.amount} month</span>
           </p>
 
-          <SubscribeButton priceId={product.priceId} />
+          <SubscribeButton />
 
         </section>
 
-
-        <img key={image.url} src={image.url} alt="Girl coding" />
-
+        <Image key={image.url} src={image.url} alt="Girl coding" />
 
       </main>
     </div>

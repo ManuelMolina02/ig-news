@@ -1,6 +1,4 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+
 import { useTheme } from '../../contexts/theme';
 import { ActiveLink } from '../ActiveLink';
 import { ConfigsButton } from '../ConfigsButton';
@@ -11,9 +9,6 @@ import styles from './style.module.scss';
 export function Header() {
 
   const { theme, color } = useTheme()
-
-
-
 
   return (
     //header

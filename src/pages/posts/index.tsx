@@ -1,6 +1,6 @@
 import { getPrismicClient } from "../../services/prismic";
 import { GetStaticProps } from "next";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { RichText } from 'prismic-dom'
 import Prismic from "@prismicio/client";
 
@@ -78,7 +78,7 @@ export default function Posts({ posts }: postsProps) {
               {
                 posts.map(post => (
                   <Link key={post.slug} href={`/posts/${post.slug}`}  >
-                    <a href='#' onClick={showClick} onMouseEnter={() => enterSection(post.slug)} onMouseLeave={() => closeSection(post.slug)}>
+                    <a onClick={showClick} onMouseEnter={() => enterSection(post.slug)} onMouseLeave={() => closeSection(post.slug)}>
                       <time>{post.updatedAt}</time>
                       {StrongComponent(post.slug, post.title)}
                       <p>{post.excerpt}</p>
@@ -86,7 +86,6 @@ export default function Posts({ posts }: postsProps) {
                   </Link>
                 ))
               }
-
             </div>
           )
         }
@@ -109,7 +108,7 @@ export const getStaticProps: GetStaticProps = async () => {
     slug: post.uid,
     title: RichText.asText(post.data.title),
     excerpt: post.data.content.find(content => content.type === 'paragraph').text ?? '',
-    updatedAt: new Date(post.first_publication_date).toLocaleString('pt-BR', {
+    updatedAt: new Date(post.last_publication_date).toLocaleString('pt-BR', {
       day: '2-digit',
       month: 'long',
       year: 'numeric',

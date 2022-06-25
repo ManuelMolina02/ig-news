@@ -6,11 +6,11 @@ import { useState } from 'react';
 import { Spinner } from '../Spinner';
 import { useTheme } from '../../contexts/theme';
 
-
 export function SignInButton() {
-  const { data: session } = useSession();
-  const [loadingSingIn, setLoadingSingIn] = useState(false);
   const { theme } = useTheme()
+  const { data: session } = useSession();
+
+  const [loadingSingIn, setLoadingSingIn] = useState(false);
 
   function handleSignIn() {
     setLoadingSingIn(true);
@@ -44,6 +44,4 @@ export function SignInButton() {
       Sign in with Github
     </button>
   )
-
-
 }

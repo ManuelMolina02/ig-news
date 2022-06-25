@@ -6,11 +6,9 @@ import { getStripeJs } from '../../services/stripe-js';
 import { Spinner } from '../Spinner';
 import styles from './styles.module.scss'
 
-interface SubscribeButtonProps {
-  priceId: string;
-}
 
-export function SubscribeButton({ priceId }: SubscribeButtonProps) {
+
+export function SubscribeButton() {
   const { data: session } = useSession();
   const router = useRouter()
 

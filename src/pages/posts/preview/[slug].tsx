@@ -29,7 +29,7 @@ export default function PostPreview({ post }: PostPreviewProps) {
     if (session?.activeUserSubscription !== undefined) {
       router.push(`/posts/${post.slug}`);
     }
-  }, [session]);
+  }, [post.slug, router, session]);
 
 
 
