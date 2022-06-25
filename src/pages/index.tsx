@@ -2,7 +2,6 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import { SubscribeButton } from '../components/SubscribeButton'
 import { useTheme } from '../contexts/theme'
 import { stripe } from '../services/stripe'
@@ -41,7 +40,7 @@ export default function Home({ product }: HomeProps) {
 
         </section>
 
-        <Image key={image.url} src={image.url} alt="Girl coding" />
+        <img key={image.url} src={image.url} alt="Girl coding" />
 
       </main>
     </div>
