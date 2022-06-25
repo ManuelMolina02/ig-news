@@ -1,7 +1,7 @@
 
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { SubscribeButton } from '../components/SubscribeButton'
 import { useTheme } from '../contexts/theme'
 import { stripe } from '../services/stripe'

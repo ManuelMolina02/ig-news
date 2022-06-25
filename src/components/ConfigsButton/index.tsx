@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 import { IoMdSettings } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "../../contexts/theme";
 
 export function ConfigsButton() {
@@ -9,12 +9,15 @@ export function ConfigsButton() {
 
   const { theme, color, image, variablesTheme } = useTheme();
 
+
+
   function setTheme(themeSelected: string) {
     if (theme.name === themeSelected) {
       return;
     }
 
     variablesTheme.setThemeSelected(themeSelected);
+    localStorage.setItem('ignews-theme', themeSelected)
   }
 
   function setColor(colorSelected: string) {
@@ -23,7 +26,7 @@ export function ConfigsButton() {
     }
 
     variablesTheme.setColorSelected(colorSelected);
-    setStyleColor(colorSelected === "analogous" ? "#c40d6f" : "#eba417");
+    localStorage.setItem('ignews-color', colorSelected)
   }
 
   function setImage(imageSelected: string) {
@@ -32,6 +35,8 @@ export function ConfigsButton() {
     }
 
     variablesTheme.setImageSelected(imageSelected);
+    localStorage.setItem('ignews-image', imageSelected)
+
   }
 
   return (
@@ -64,7 +69,7 @@ export function ConfigsButton() {
                   backgroundColor: theme.bgSecondary,
                   color: theme.color,
                   borderColor:
-                    theme.name === "dark" ? styleColor : "transparent",
+                    theme.name === "dark" ? color.primary : "transparent",
                 }}
                 className={styles.settingOptions}
                 onClick={() => setTheme("dark")}
@@ -76,7 +81,7 @@ export function ConfigsButton() {
                   backgroundColor: theme.bgSecondary,
                   color: theme.color,
                   borderColor:
-                    theme.name === "light" ? styleColor : "transparent",
+                    theme.name === "light" ? color.primary : "transparent",
                 }}
                 className={styles.settingOptions}
                 onClick={() => setTheme("light")}
@@ -94,7 +99,7 @@ export function ConfigsButton() {
                   backgroundColor: theme.bgSecondary,
                   color: theme.color,
                   borderColor:
-                    color.name === "analogous" ? styleColor : "transparent",
+                    color.name === "analogous" ? color.primary : "transparent",
                 }}
                 className={styles.settingOptions}
                 onClick={() => setColor("analogous")}
@@ -106,7 +111,7 @@ export function ConfigsButton() {
                   backgroundColor: theme.bgSecondary,
                   color: theme.color,
                   borderColor:
-                    color.name === "complementary" ? styleColor : "transparent",
+                    color.name === "complementary" ? color.primary : "transparent",
                 }}
                 className={styles.settingOptions}
                 onClick={() => setColor("complementary")}
@@ -124,7 +129,7 @@ export function ConfigsButton() {
                   backgroundColor: theme.bgSecondary,
                   color: theme.color,
                   borderColor:
-                    image.name === "girl-coding-1" ? styleColor : "transparent",
+                    image.name === "girl-coding-1" ? color.primary : "transparent",
                 }}
                 className={styles.settingOptions}
                 onClick={() => setImage('girl-coding-1')}
@@ -136,7 +141,7 @@ export function ConfigsButton() {
                   backgroundColor: theme.bgSecondary,
                   color: theme.color,
                   borderColor:
-                    image.name === "girl-coding-2" ? styleColor : "transparent",
+                    image.name === "girl-coding-2" ? color.primary : "transparent",
                 }}
                 className={styles.settingOptions}
                 onClick={() => setImage('girl-coding-2')}

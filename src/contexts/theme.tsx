@@ -7,21 +7,34 @@ interface DefineThemeProps {
   children: ReactNode
 }
 
-
 //criando um contexto
 export const DefineThemeContext = createContext({} as any);
 
 //criando um provider
 export function DefineThemeProvider({ children }: DefineThemeProps) {
 
-  function findItem(data: Array<any>, key: string) {
-    return data.find(item => item.name === key)
-  }
-
   //variaveis de itens selecionados
   const [themeSelected, setThemeSelected] = useState('dark');
   const [colorSelected, setColorSelected] = useState('analogous');
   const [imageSelected, setImageSelected] = useState('girl-coding-1')
+
+  useEffect(() => {
+    let theme = localStorage.getItem('ignews-theme')
+    let color = localStorage.getItem('ignews-color')
+    let image = localStorage.getItem('ignews-image')
+
+
+    setThemeSelected(theme === null ? 'dark' : theme)
+    setColorSelected(color === null ? 'analogous' : color)
+    setImageSelected(image === null ? 'girl-coding-1' : image)
+
+  }, [])
+
+  function findItem(data: Array<any>, key: string) {
+    return data.find(item => item.name === key)
+  }
+
+
 
   //variaveis armazenam os itens ativos
   const [theme, setTheme] = useState({})
