@@ -5,9 +5,10 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { Spinner } from '../Spinner';
 import { useTheme } from '../../contexts/theme';
+import { IoMdColorFill } from 'react-icons/io';
 
 export function SignInButton() {
-  const { theme } = useTheme()
+  const { theme, color } = useTheme()
   const { data: session } = useSession();
 
   const [loadingSingIn, setLoadingSingIn] = useState(false);
@@ -26,7 +27,7 @@ export function SignInButton() {
 
   return session ? (
     <button type='button' className={styles.singInButton} style={{ backgroundColor: theme.bgSecondary, color: theme.color }} onClick={() => signOut()}>
-      <FaGithub color='#04d361' />
+      <FaGithub color={theme.gitIconActive} />
       {session.user.name}
       <FiX color='#737380' className={styles.closeIcon} />
 
@@ -36,9 +37,9 @@ export function SignInButton() {
       {
         loadingSingIn
           ?
-          <Spinner color='#ffffffcb' size='sm' />
+          <Spinner color={color.primary} size='sm' />
           :
-          <FaGithub color='#ffffffcb' />
+          <FaGithub color={theme.color} />
       }
 
       Sign in with Github

@@ -4,22 +4,28 @@ export const themes = {
       name: "dark",
       bgPrimary: "#121214",
       bgSecondary: "#1f2729",
+
       color: "#e5e5e5",
       bgHover: "#ffffff12",
 
       constrastColor: "#ffffffcb",
       shadow: "0px 0px 10px 2px #5050504f",
+
+      gitIconActive: "#04d361",
     },
     {
       name: "light",
       bgPrimary: "#e5e5e5",
       bgSecondary: "#c6d0d3",
-      color: "#1f2729",
+
+      color: "#4A5568",
 
       bgHover: "#c5c5c57a",
 
       constrastColor: "#ffffffcb",
       shadow: "0px 0px 10px 2px #5050504f",
+
+      gitIconActive: "#00ad4e",
     },
   ],
   colors: [

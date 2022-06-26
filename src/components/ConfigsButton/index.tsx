@@ -47,7 +47,7 @@ export function ConfigsButton() {
         style={{ backgroundColor: theme.bgSecondary }}
         onClick={() => setShowSettings(true)}
       >
-        <IoMdSettings color="#a3afa8" />
+        <IoMdSettings color={theme.color} />
       </button>
 
       {showSettings && (

@@ -70,7 +70,7 @@ export default function Posts({ posts }: postsProps) {
         {
           handleClick ? (
             <div className={styles.spinnerPosts}>
-              <Spinner color="#ffffff4f" size='lg' />
+              <Spinner color={theme.bgSecondary} size='lg' />
             </div>
           ) : (
             <div className={styles.posts} >
