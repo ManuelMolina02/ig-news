@@ -8,11 +8,12 @@
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 2rem;
+  height: 100%;
 }
 
 .post {
   max-width: 720px;
-  margin: 5rem auto 0;
+  margin: 3rem auto 0;
 
   h1 {
     font-size: 3.5rem;
@@ -22,17 +23,17 @@
   time {
     display: block;
     font-size: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
   }
 
   .postContent {
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     line-height: 2rem;
     font-size: 1.125rem;
 
     p,
     ul {
-      margin: 1.5rem 0;
+      margin: 1rem 0;
     }
 
     ul {
@@ -46,7 +47,7 @@
     &.postPreview{
       background: linear-gradient(var(--gray-100), transparent);
       background-clip: text;
-      //-webkit-text-fill-color: var(--gray-800);
+      -webkit-text-fill-color: var(--gray-800);
     }
   }
 }
