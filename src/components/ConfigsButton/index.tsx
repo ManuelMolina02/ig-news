@@ -121,7 +121,7 @@ export function ConfigsButton() {
 
             <br />
             <div>
-              <strong>person</strong>
+              <strong>girl coding</strong>
 
               <button
                 style={{
@@ -132,7 +132,7 @@ export function ConfigsButton() {
                 className={styles.settingOptions}
                 onClick={() => setImage('girl-coding-1')}
               >
-                girl-coding 1
+                avatar 1
               </button>
               <button
                 style={{
@@ -143,7 +143,7 @@ export function ConfigsButton() {
                 className={styles.settingOptions}
                 onClick={() => setImage('girl-coding-2')}
               >
-                girl-coding 2
+                avatar 2
               </button>
             </div>
           </div>
