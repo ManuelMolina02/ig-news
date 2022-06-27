@@ -2,10 +2,9 @@ import styles from './styles.module.scss';
 import { FaGithub } from 'react-icons/fa';
 import { FiX } from 'react-icons/fi';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner';
 import { useTheme } from '../../contexts/theme';
-import { IoMdColorFill } from 'react-icons/io';
 
 export function SignInButton() {
   const { theme, color } = useTheme()
@@ -13,9 +12,11 @@ export function SignInButton() {
 
   const [loadingSingIn, setLoadingSingIn] = useState(false);
 
+  const [showButton, setShowButton] = useState(false);
+
+
   function handleSignIn() {
     setLoadingSingIn(true);
-
     try {
       signIn('github');
 
@@ -25,6 +26,20 @@ export function SignInButton() {
 
   }
 
+  setTimeout(() => {
+    setShowButton(true)
+  }, 2000)
+
+
+
+  //alert(showButton)
+  const dataStyle = !showButton ? {
+    padding: '10px',
+    borderRadius: '200px',
+    display: 'flex',
+    border: 'none'
+  } : {}
+
   return session ? (
     <button type='button' className={styles.singInButton} style={{ backgroundColor: theme.bgSecondary, color: theme.color }} onClick={() => signOut()}>
       <FaGithub color={theme.gitIconActive} />
@@ -33,7 +48,30 @@ export function SignInButton() {
 
     </button>
   ) : (
-    <button type='button' className={styles.singInButton} onClick={() => handleSignIn()} style={{ backgroundColor: theme.bgSecondary, color: theme.color }}>
+    <button type='button' className={showButton ? styles.singInButton : ''} onClick={() => handleSignIn()} style={{ backgroundColor: theme.bgSecondary, color: theme.color, ...dataStyle }}>
+      {
+        !showButton ?
+          <Spinner color={color.primary} size='sm' /> :
+          <>
+            {
+              loadingSingIn
+                ?
+                <Spinner color={color.primary} size='sm' />
+                :
+                <FaGithub color={theme.color} />
+            }
+            Sign in with Github
+          </>
+      }
+
+    </button>
+  )
+}
+
+
+/*
+
+  <button type='button' className={styles.singInButton} onClick={() => handleSignIn()} style={{ backgroundColor: theme.bgSecondary, color: theme.color }}>
       {
         loadingSingIn
           ?
@@ -44,5 +82,5 @@ export function SignInButton() {
 
       Sign in with Github
     </button>
-  )
-}
+
+*/
