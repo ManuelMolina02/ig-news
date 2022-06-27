@@ -41,14 +41,14 @@ export function SignInButton() {
   } : {}
 
   return session ? (
-    <button type='button' className={styles.singInButton} style={{ backgroundColor: theme.bgSecondary, color: theme.color }} onClick={() => signOut()}>
+    <button type='button' className={styles.signInButton} style={{ backgroundColor: theme.bgSecondary, color: theme.color }} onClick={() => signOut()}>
       <FaGithub color={theme.gitIconActive} />
-      {session.user.name}
+      <span>{session.user.name}</span>
       <FiX color='#737380' className={styles.closeIcon} />
 
     </button>
   ) : (
-    <button type='button' className={showButton ? styles.singInButton : ''} onClick={() => handleSignIn()} style={{ backgroundColor: theme.bgSecondary, color: theme.color, ...dataStyle }}>
+    <button type='button' className={showButton ? styles.signInButton : ''} onClick={() => handleSignIn()} style={{ backgroundColor: theme.bgSecondary, color: theme.color, ...dataStyle }}>
       {
         !showButton ?
           <Spinner color={color.primary} size='sm' /> :
@@ -60,7 +60,7 @@ export function SignInButton() {
                 :
                 <FaGithub color={theme.color} />
             }
-            Sign in with Github
+            <span>Sign in with Github</span>
           </>
       }
 

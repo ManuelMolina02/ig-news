@@ -1,4 +1,4 @@
-.singInButton{
+.signInButton{
   height: 3rem;
   border-radius: 3rem;
   background-color: var(--gray-850);
@@ -8,9 +8,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+    margin-left: auto;
 
-  color: var(--white);
   font-weight: bold;
+
+  animation: expandRight .25s ease-out;
+
+  span {
+   animation: showText .3s linear;
+  }
+  
+  transition: filter .2s;
 
   svg {
     width: 20px;
@@ -25,10 +33,40 @@
     margin-left: 1rem;
   }
 
-  transition: filter .2s;
-
   &:hover {
     filter: brightness(.8);
 }
 
+
+}
+
+
+@keyframes expandRight {
+  0% {
+    width: 0%;
+
+  } 
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes showText {
+  0%{
+    position: relative;
+    z-index: -10;
+    color: transparent;
+  }
+  85% {
+    transform: scale(0);
+
+  }
+
+  100%{
+    position: relative;
+    z-index: 1;
+    transform: scale(1);
+
+  }
 }

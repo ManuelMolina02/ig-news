@@ -42,7 +42,7 @@
   .settingsContent{
     width: 180px;
     transition: all .5s linear;
-    animation: expandDown 2s ;
+    animation: expandDown 1.2s;
     animation-timing-function: 1s;
     box-shadow: 0px 0px 4px 2px #5c5c5c15;
 
@@ -87,8 +87,6 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        //border-width: 2px;
-        //border-style: solid;
         border: none;
         
 
