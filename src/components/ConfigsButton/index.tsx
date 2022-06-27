@@ -46,6 +46,7 @@ export function ConfigsButton() {
         className={styles.settingButton}
         style={{ backgroundColor: theme.bgSecondary }}
         onClick={() => setShowSettings(true)}
+
       >
         <IoMdSettings color={theme.color} />
       </button>
@@ -58,18 +59,17 @@ export function ConfigsButton() {
           ></div>
           <div
             className={styles.settingsContent}
-            style={{ backgroundColor: theme.bgPrimary, color: theme.color }}
+            style={{ backgroundColor: theme.bgSecondary, color: theme.color }}
           >
-            <h3>Settings</h3>
+            <h3 style={{ borderBottom: `${theme.color} 1px solid` }}>Settings</h3>
             <br />
             <div>
               <strong>themes</strong>
               <button
                 style={{
-                  backgroundColor: theme.bgSecondary,
-                  color: theme.color,
-                  borderColor:
-                    theme.name === "dark" ? color.primary : "transparent",
+                  color: theme.name === "dark" ? theme.bgPrimary : theme.color,
+                  backgroundColor:
+                    theme.name === "dark" ? color.primary : theme.bgPrimary,
                 }}
                 className={styles.settingOptions}
                 onClick={() => setTheme("dark")}
@@ -78,10 +78,9 @@ export function ConfigsButton() {
               </button>
               <button
                 style={{
-                  backgroundColor: theme.bgSecondary,
-                  color: theme.color,
-                  borderColor:
-                    theme.name === "light" ? color.primary : "transparent",
+                  color: theme.name === "light" ? theme.bgPrimary : theme.color,
+                  backgroundColor:
+                    theme.name === "light" ? color.primary : theme.bgPrimary,
                 }}
                 className={styles.settingOptions}
                 onClick={() => setTheme("light")}
@@ -96,10 +95,11 @@ export function ConfigsButton() {
 
               <button
                 style={{
-                  backgroundColor: theme.bgSecondary,
-                  color: theme.color,
-                  borderColor:
-                    color.name === "analogous" ? color.primary : "transparent",
+                  color: color.name === "analogous" ? theme.bgPrimary : theme.color,
+                  backgroundColor:
+                    color.name === "analogous" ? color.primary : theme.bgPrimary,
+
+
                 }}
                 className={styles.settingOptions}
                 onClick={() => setColor("analogous")}
@@ -108,10 +108,9 @@ export function ConfigsButton() {
               </button>
               <button
                 style={{
-                  backgroundColor: theme.bgSecondary,
-                  color: theme.color,
-                  borderColor:
-                    color.name === "complementary" ? color.primary : "transparent",
+                  color: color.name === "complementary" ? theme.bgPrimary : theme.color,
+                  backgroundColor:
+                    color.name === "complementary" ? color.primary : theme.bgPrimary,
                 }}
                 className={styles.settingOptions}
                 onClick={() => setColor("complementary")}
@@ -126,10 +125,9 @@ export function ConfigsButton() {
 
               <button
                 style={{
-                  backgroundColor: theme.bgSecondary,
-                  color: theme.color,
-                  borderColor:
-                    image.name === "girl-coding-1" ? color.primary : "transparent",
+                  color: image.name === "girl-coding-1" ? theme.bgPrimary : theme.color,
+                  backgroundColor:
+                    image.name === "girl-coding-1" ? color.primary : theme.bgPrimary,
                 }}
                 className={styles.settingOptions}
                 onClick={() => setImage('girl-coding-1')}
@@ -138,10 +136,9 @@ export function ConfigsButton() {
               </button>
               <button
                 style={{
-                  backgroundColor: theme.bgSecondary,
-                  color: theme.color,
-                  borderColor:
-                    image.name === "girl-coding-2" ? color.primary : "transparent",
+                  color: image.name === "girl-coding-2" ? theme.bgPrimary : theme.color,
+                  backgroundColor:
+                    image.name === "girl-coding-2" ? color.primary : theme.bgPrimary,
                 }}
                 className={styles.settingOptions}
                 onClick={() => setImage('girl-coding-2')}

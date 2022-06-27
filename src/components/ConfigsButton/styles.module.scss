@@ -40,7 +40,7 @@
   }
 
   .settingsContent{
-    width: 220px;
+    width: 180px;
     transition: all .5s linear;
     animation: expandDown 2s ;
     animation-timing-function: 1s;
@@ -51,7 +51,7 @@
     position: absolute;
     z-index: 100;
     top: 16px;
-    right: .6rem;
+    right: 2.4rem;
 
     border-radius: 12px;
     padding: 2rem;
@@ -87,8 +87,9 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        border-width: 2px;
-        border-style: solid;
+        //border-width: 2px;
+        //border-style: solid;
+        border: none;
         
 
         &:hover {
