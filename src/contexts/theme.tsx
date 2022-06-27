@@ -28,6 +28,8 @@ export function DefineThemeProvider({ children }: DefineThemeProps) {
     setColorSelected(color === null ? 'analogous' : color)
     setImageSelected(image === null ? 'girl-coding-1' : image)
 
+    document.body.style.setProperty('--bg-default', theme === 'dark' ? '#121214' : '#e5e5e5')
+
   }, [])
 
   function findItem(data: Array<any>, key: string) {
