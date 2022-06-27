@@ -44,14 +44,14 @@ export function SignInButton() {
     <button type='button' className={styles.signInButton} style={{ backgroundColor: theme.bgSecondary, color: theme.color }} onClick={() => signOut()}>
       <FaGithub color={theme.gitIconActive} />
       <span>{session.user.name}</span>
-      <FiX color='#737380' className={styles.closeIcon} />
+      <FiX color={theme.color} className={styles.closeIcon} />
 
     </button>
   ) : (
     <button type='button' className={showButton ? styles.signInButton : ''} onClick={() => handleSignIn()} style={{ backgroundColor: theme.bgSecondary, color: theme.color, ...dataStyle }}>
       {
         !showButton ?
-          <Spinner color={color.primary} size='sm' /> :
+          <Spinner color={theme.color} size='sm' /> :
           <>
             {
               loadingSingIn
