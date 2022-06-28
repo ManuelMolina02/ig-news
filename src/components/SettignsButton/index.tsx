@@ -5,8 +5,13 @@ import { SettingsOption } from "./SettingsOption";
 import { IoMdSettings } from "react-icons/io";
 
 import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
 
 export function SettignsButton() {
+
+
+  const { pathname } = useRouter();
+
   const [showSettings, setShowSettings] = useState(false);
   const { theme, color, image, variablesTheme } = useTheme();
   const [animation, setAnimation] = useState(styles.settingsContainer);
@@ -71,6 +76,7 @@ export function SettignsButton() {
             style={{
               backgroundColor: theme.bgSecondary,
               color: theme.color,
+              maxHeight: pathname === '/' ? "520px" : "382px",
             }}
           >
             <h3 style={{ borderBottom: `${theme.color} 1px solid` }}>Settings</h3>
@@ -91,13 +97,21 @@ export function SettignsButton() {
               useStyles={{ theme, color }}
             />
 
-            <SettingsOption
-              keyOption={image.name}
-              title={'girl coding'}
-              options={['girl-coding-1', 'girl-coding-2']}
-              action={setImage}
-              useStyles={{ theme, color }}
-            />
+
+            {
+              pathname === '/' && (
+                <SettingsOption
+                  keyOption={image.name}
+                  title={'girl coding'}
+                  options={['girl-coding-1', 'girl-coding-2']}
+                  action={setImage}
+                  useStyles={{ theme, color }}
+                />
+              )
+
+            }
+
+
           </div>
         </div>
       )}
