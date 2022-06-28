@@ -1,7 +1,5 @@
 .container{
- // transition: background .4s ease-in;
-
-
+  transition: background .2s ease-in;
 }
 
 .contentContainer {
@@ -15,14 +13,11 @@
   justify-content: space-around;
 
   img {
+    width: 336px;
+    height: 520px;
     animation: slidein .5s ease-in;
   }
-
 }
-
-
-
-
 
 .hero {
   max-width: 600px;
@@ -58,13 +53,11 @@
     }
   }
 
-
   button {
     margin-top: 2.5rem;
   }
 
 }
-
 
 @keyframes slidein {
   from {

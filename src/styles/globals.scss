@@ -15,8 +15,6 @@
   --gray-850: #1f2729;
   --gray-900: #121214;
 
-  --bg-default: #121214;
-
   --cyan-500: #00ade2;
   --yellow-500: #eba417;
 
@@ -30,7 +28,6 @@
 
 body {
   color: var(--white);
-  background-color: var(--bg-default);
 }
 
 body, input,textarea,select,button {
