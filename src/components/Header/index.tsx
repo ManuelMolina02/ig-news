@@ -1,7 +1,7 @@
 
 import { useTheme } from '../../contexts/theme';
 import { ActiveLink } from '../ActiveLink';
-import { ConfigsButton } from '../ConfigsButton';
+import { SettignsButton } from '../SettignsButton';
 import { SignInButton } from '../SignInButton';
 import styles from './style.module.scss';
 
@@ -27,7 +27,7 @@ export function Header() {
           <SignInButton />
         </div>
 
-        <ConfigsButton />
+        <SettignsButton />
 
       </div>
     </header>
