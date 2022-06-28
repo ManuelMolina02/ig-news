@@ -1,13 +1,15 @@
-import styles from "./styles.module.scss";
-import { IoMdSettings } from "react-icons/io";
-import { useEffect, useState } from "react";
 import { useTheme } from "../../contexts/theme";
+import { useState } from "react";
+
 import { SettingsOption } from "./SettingsOption";
+import { IoMdSettings } from "react-icons/io";
+
+import styles from "./styles.module.scss";
 
 export function SettignsButton() {
   const [showSettings, setShowSettings] = useState(false);
-
   const { theme, color, image, variablesTheme } = useTheme();
+  const [animation, setAnimation] = useState(styles.settingsContainer);
 
   function setTheme(themeSelected: string) {
     if (theme.name === themeSelected) {
@@ -43,7 +45,11 @@ export function SettignsButton() {
         type="button"
         className={styles.settingButton}
         style={{ backgroundColor: theme.bgSecondary }}
-        onClick={() => setShowSettings(true)}
+
+        onClick={() => {
+          setAnimation(styles.expandAnimation)
+          setShowSettings(true)
+        }}
 
       >
         <IoMdSettings color={theme.color} />
@@ -53,14 +59,21 @@ export function SettignsButton() {
         <div className={styles.settingsContainer}>
           <div
             className={styles.settingsOverlay}
-            onClick={() => setShowSettings(false)}
+            onClick={() => {
+              setAnimation(styles.reduceAnimation)
+              setTimeout(() => {
+                setShowSettings(false)
+              }, 1000);
+            }}
           ></div>
           <div
-            className={styles.settingsContent}
-            style={{ backgroundColor: theme.bgSecondary, color: theme.color }}
+            className={`${animation} ${styles.settingsContent} `}
+            style={{
+              backgroundColor: theme.bgSecondary,
+              color: theme.color,
+            }}
           >
             <h3 style={{ borderBottom: `${theme.color} 1px solid` }}>Settings</h3>
-            <br />
 
             <SettingsOption
               keyOption={theme.name}
@@ -69,7 +82,7 @@ export function SettignsButton() {
               action={setTheme}
               useStyles={{ theme, color }}
             />
-            <br />
+
             <SettingsOption
               keyOption={color.name}
               title={'colors'}
@@ -78,8 +91,6 @@ export function SettignsButton() {
               useStyles={{ theme, color }}
             />
 
-            <br />
-
             <SettingsOption
               keyOption={image.name}
               title={'girl coding'}
@@ -87,7 +98,6 @@ export function SettignsButton() {
               action={setImage}
               useStyles={{ theme, color }}
             />
-
           </div>
         </div>
       )}

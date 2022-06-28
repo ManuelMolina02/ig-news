@@ -2,8 +2,6 @@
   width: 100%;
   padding: 0 0.8rem;
 
-  animation: fadeItens 1s linear;
-
   height: 3.4rem;
   border-radius: 8px;
   
@@ -15,23 +13,4 @@
   &:hover {
     filter: brightness(0.8);
   }
-}
-
-
-@keyframes fadeItens {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  75%{
-    transform: scale(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-
-  }
-  
 }
