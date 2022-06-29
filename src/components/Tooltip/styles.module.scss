@@ -1,0 +1,19 @@
+.tooltipContainer{
+
+  > span {
+    position: absolute;
+    z-index: -100;
+    
+    background-color: rgba(0, 0, 0, 0.78);
+    color: white;
+    padding: 8px 16px;
+    margin-top: 8px;
+    border-radius: 6px;
+  }
+
+  &:hover{
+   > span {
+    z-index: 100;
+   }
+  }
+}

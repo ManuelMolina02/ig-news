@@ -6,9 +6,9 @@ import { IoMdSettings } from "react-icons/io";
 
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
+import { Tooltip } from "../Tooltip";
 
 export function SettignsButton() {
-
 
   const { pathname } = useRouter();
 
@@ -46,19 +46,23 @@ export function SettignsButton() {
 
   return (
     <>
-      <button
-        type="button"
-        className={styles.settingButton}
-        style={{ backgroundColor: theme.bgSecondary }}
 
-        onClick={() => {
-          setAnimation(styles.expandAnimation)
-          setShowSettings(true)
-        }}
+      <Tooltip text='Settings' >
+        <button
+          type="button"
+          className={styles.settingButton}
+          style={{ backgroundColor: theme.bgSecondary }}
 
-      >
-        <IoMdSettings color={theme.color} />
-      </button>
+          onClick={() => {
+            setAnimation(styles.expandAnimation)
+            setShowSettings(true)
+          }}
+
+        >
+          <IoMdSettings color={theme.color} />
+        </button>
+      </Tooltip>
+
 
       {showSettings && (
         <div className={styles.settingsContainer}>
