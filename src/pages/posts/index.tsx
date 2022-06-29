@@ -66,7 +66,7 @@ export default function Posts({ posts }: postsProps) {
         <title>posts | ig.news</title>
       </Head>
 
-      <main className={styles.postCcontainer}>
+      <main className={styles.postContainer}>
         {
           handleClick ? (
             <div className={styles.spinnerPosts}>
