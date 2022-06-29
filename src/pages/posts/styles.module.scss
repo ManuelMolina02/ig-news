@@ -1,7 +1,6 @@
 .container {
   transition: all .4s ease-in;
-  height: 100vh; 
-  overflow: hidden 
+  height: fit-content; 
 }
 
 .postContainer {
@@ -12,7 +11,7 @@
 
 .posts {
   max-width: 720px;
-  margin: 5rem auto 0;
+  margin: 5rem auto;
 
   a {
     display: block;
