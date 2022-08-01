@@ -1,8 +1,10 @@
 .container {
+  width: 100%;
+  min-height: 90vh;
+  position: absolute;
+  z-index: 0;
   transition: all .4s ease-in;
-  height: fit-content; 
 }
-
 .postContainer {
   max-width: 1120px;
   margin: 0 auto;
@@ -69,4 +71,5 @@
     }
   
   }
+
 }

@@ -12,6 +12,7 @@ export const themes = {
       shadow: "0px 0px 10px 2px #5050504f",
 
       gitIconActive: "#04d361",
+      borderColor: "#626262",
     },
     {
       name: "light",
@@ -66,6 +67,24 @@ export const themes = {
           url: "/images/girl-complementary-2.svg",
         },
       ],
+    },
+  ],
+  avatar: [
+    {
+      name: "Hair",
+      colors: ["#263238", "#DBAD38", "#740700"],
+    },
+    {
+      name: "Glasses",
+      colors: ["#1C1C1C", "#003A7D", "#8B4300", "#980049", "#49002C"],
+    },
+    {
+      name: "TShirt",
+      colors: ["#EF5D5D", "#AA0052", "#00AA81"],
+    },
+    {
+      name: "Skin",
+      colors: ["#684938", "#8B5F46", "#D68B61", "#FFA07A"],
     },
   ],
 };

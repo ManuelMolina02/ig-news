@@ -12,7 +12,6 @@
   color: var(--white);
   font-weight: bold;
 
-  
 
   svg {
     width: 20px;
@@ -66,8 +65,8 @@
   }
 
   .settingsContent{
-    width: 180px;
-
+    width: 218px;
+    max-height: 514px !important;
     position: absolute;
     z-index: 100;
     top: 16px;
@@ -79,19 +78,31 @@
     background-color: #141414;
 
     h3 {
-      padding-bottom: 6px;
-      border-bottom: solid 1px rgb(199, 199, 199);
+      padding-bottom: 6px;  
     }
+
+    h3:nth-child(4) {
+      margin-top: 32px;
+    }
+
+    
 
     div {
       strong {
         font-size: 16px;
+        margin-top: 12px;
       }
-      
+
       display: flex;
       flex-direction: column;
-      margin: 10px 0;
-      gap: 10px;
+      gap: 6px;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+      }
 
       button {
         transition: background .2s linear;

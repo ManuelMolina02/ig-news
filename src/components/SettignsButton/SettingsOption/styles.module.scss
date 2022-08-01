@@ -1,13 +1,12 @@
 .optionStyle {
-  width: 100%;
-  padding: 0 0.8rem;
+  width: 26px;
+  height: 26px;
 
-  height: 3.4rem;
   border-radius: 8px;
   
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   border: none;
   
   &:hover {

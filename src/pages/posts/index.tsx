@@ -2,13 +2,13 @@ import { getPrismicClient } from "../../services/prismic";
 import { GetStaticProps } from "next";
 import { useState } from "react";
 import { RichText } from 'prismic-dom'
-import Prismic from "@prismicio/client";
 
 import Head from "next/head";
 import styles from './styles.module.scss';
 import Link from "next/link";
 import { Spinner } from "../../components/Spinner";
 import { useTheme } from "../../contexts/theme";
+import { api } from "../../services/api";
 
 type Post = {
   slug: string;
@@ -19,19 +19,71 @@ type Post = {
 }
 
 interface postsProps {
-  posts: Post[]
+  posts: Post[],
+  next_page: string | null,
 }
 
-export default function Posts({ posts }: postsProps) {
+export default function Posts({ posts, next_page }: postsProps) {
   const { theme, color } = useTheme()
   const [handleClick, setHandleClick] = useState(false);
+  const [mouseActive, setMouseActive] = useState(false)
+  const [elementMouseHover, setElementMouseHover] = useState('')
+
+
+
+  const [morePostsValeus, setMorePostsValues] = useState(next_page)
+  const [nextPage, setNextPage] = useState(next_page)
+  const [postValues, setPostValues] = useState(posts)
+
+  const [loading, setLoading] = useState(false)
+
+
+
+  async function handleNewPosts() {
+
+    setLoading(true)
+
+    setTimeout(async () => {
+      try {
+        const { data } = await api.get(nextPage)
+
+        //mostrar no console resultados com parse JSON
+
+
+        const dataValues = Object.values<any>(data.results).map(post => {
+          return {
+            slug: post.uid,
+            title: RichText.asText(post.data.title),
+            excerpt: post.data.content.find(content => content.type === 'paragraph').text ?? '',
+            updatedAt: new Date(post.last_publication_date).toLocaleString('pt-BR', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+            })
+          }
+        })
+
+        setPostValues([...postValues, ...dataValues])
+
+        if (!data.next_page) {
+          setMorePostsValues(null)
+        } else {
+          setNextPage(data.next_page)
+        }
+      } catch (error) {
+        console.log(error);
+
+      } finally {
+        setLoading(false)
+      }
+
+    }, 1000);
+
+  }
 
   function showClick() {
     setHandleClick(true);
   }
-
-  const [elementMouseHover, setElementMouseHover] = useState('')
-  const [mouseActive, setMouseActive] = useState(false)
 
   function enterSection(slug: string) {
     setElementMouseHover(slug)
@@ -76,7 +128,7 @@ export default function Posts({ posts }: postsProps) {
             <div className={styles.posts} >
 
               {
-                posts.map(post => (
+                postValues.map(post => (
                   <Link key={post.slug} href={`/posts/${post.slug}`}  >
                     <a onClick={showClick} onMouseEnter={() => enterSection(post.slug)} onMouseLeave={() => closeSection(post.slug)}>
                       <time>{post.updatedAt}</time>
@@ -85,6 +137,18 @@ export default function Posts({ posts }: postsProps) {
                     </a>
                   </Link>
                 ))
+              }
+
+              {
+                morePostsValeus && (
+                  <button
+                    onClick={() => handleNewPosts()}
+                    className={styles.infiniteScrollBtn}
+                    style={{ color: color.primary }}
+                  >
+                    view more {loading ? <Spinner color={color.primary} size='sm' /> : '...'}
+                  </button>
+                )
               }
             </div>
           )
@@ -95,14 +159,13 @@ export default function Posts({ posts }: postsProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const prismic = getPrismicClient();
+  const prismic = getPrismicClient({});
 
-  const response = await prismic.query<any>([
-    Prismic.Predicates.at('document.type', 'posts')
-  ], {
+  const response = await prismic.getByType('posts', {
     fetch: ['posts.title', 'posts.content'],
-    pageSize: 20,
-  })
+    pageSize: 1,
+    page: 1,
+  });
 
   const posts = response.results.map(post => ({
     slug: post.uid,
@@ -117,7 +180,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      posts
-    }
+      posts,
+      next_page: response.next_page,
+    },
+    //revalidate: 60 * 60 * 24 * 7 // 1 week, 
   }
 }

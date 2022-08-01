@@ -1,12 +1,10 @@
-
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import { SubscribeButton } from '../components/SubscribeButton'
+import Svg from '../components/Svg'
 import { useTheme } from '../contexts/theme'
 import { stripe } from '../services/stripe'
 import styles from '../styles/home.module.scss'
-
 
 interface HomeProps {
   product: {
@@ -15,12 +13,11 @@ interface HomeProps {
   }
 }
 
-
 export default function Home({ product }: HomeProps) {
-  const { theme, color, image } = useTheme()
+  const { theme, hair, glasses, tShirt, skin } = useTheme()
 
   return (
-    <div className={styles.container} style={{ backgroundColor: theme.bgPrimary }}>
+    <div className={styles.container} style={{ backgroundColor: theme.bgPrimary }} >
       <Head>
         <title>home | ig.news </title>
       </Head>
@@ -37,11 +34,9 @@ export default function Home({ product }: HomeProps) {
           </p>
 
           <SubscribeButton />
-
         </section>
 
-        <img key={image.url} src={image.url} alt="Girl coding" />
-
+        <Svg avatar={{ hair, glasses, tShirt, skin }} />
       </main>
     </div>
   )
@@ -65,9 +60,5 @@ export const getStaticProps: GetStaticProps = async () => {
       product,
     },
     revalidate: 60 * 60 * 24, // 1 day
-
-
   }
-
-
 }

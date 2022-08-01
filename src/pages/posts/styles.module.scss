@@ -1,12 +1,17 @@
 .container {
+  width: 100%;
+  min-height: 90vh;
+  position: absolute;
+  z-index: 0;
   transition: all .4s ease-in;
-  height: fit-content; 
 }
 
 .postContainer {
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 2rem;
+
+
 }
 
 .posts {
@@ -42,11 +47,25 @@
       color: var(--gray-300);
       margin-top: .5rem;
       line-height: 1.625rem;
+
     }
 
     &:hover strong {
       color: var(--pink-550);
     }
+  }
+
+  .infiniteScrollBtn {
+    margin-top: 20px;
+
+    width: 180px;
+    height: 40px;
+    text-align: start;
+    background-color: transparent;
+    border: none;
+
+    font-size: 22px;
+    color: rgb(255, 60, 93);
   }
 }
 

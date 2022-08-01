@@ -16,19 +16,31 @@ export function DefineThemeProvider({ children }: DefineThemeProps) {
   //variaveis de itens selecionados
   const [themeSelected, setThemeSelected] = useState('dark');
   const [colorSelected, setColorSelected] = useState('analogous');
-  const [imageSelected, setImageSelected] = useState('girl-coding-1')
+
+  const [hairSelected, setHairSelected] = useState('#DBAD38')
+  const [glassesSelected, setGlassesSelected] = useState('#003A7D')
+  const [tShirtSelected, setTShirtSelected] = useState('#EF5D5D')
+  const [skinSelected, setSkinSelected] = useState('#8B5F46')
 
   useEffect(() => {
     let theme = localStorage.getItem('ignews-theme')
     let color = localStorage.getItem('ignews-color')
-    let image = localStorage.getItem('ignews-image')
+
+    let hair = localStorage.getItem('ignews-hair')
+
+    let glasses = localStorage.getItem('ignews-glasses')
+    let tShirt = localStorage.getItem('ignews-tShirt')
+    let skin = localStorage.getItem('ignews-skin')
 
 
     setThemeSelected(theme === null ? 'dark' : theme)
     setColorSelected(color === null ? 'analogous' : color)
-    setImageSelected(image === null ? 'girl-coding-1' : image)
 
-    document.body.style.backgroundColor = theme === 'dark' ? '#121214' : '#e5e5e5'
+    setHairSelected(hair === null ? '#263238' : hair)
+    setGlassesSelected(glasses === null ? '#003A7D' : glasses)
+    setTShirtSelected(tShirt === null ? '#EF5D5D' : tShirt)
+    setSkinSelected(skin === null ? '#8B5F46' : skin)
+
 
   }, [])
 
@@ -37,16 +49,31 @@ export function DefineThemeProvider({ children }: DefineThemeProps) {
   }
 
 
+  function findAvatarItem(data: Array<any>, key: string, feature: string) {
+    const selectedItem = data.find(item => item.name === feature)
+    return selectedItem?.colors.find(item => item === key)
+  }
+
 
   //variaveis armazenam os itens ativos
   const [theme, setTheme] = useState({})
   const [color, setColor] = useState({})
-  const [image, setImage] = useState({})
+
+  //avatar
+  const [hair, setHair] = useState({})
+  const [glasses, setGlasses] = useState({})
+  const [tShirt, setTShirt] = useState({})
+  const [skin, setSkin] = useState({})
 
   //funções que definem o item ativo
   const newTheme = findItem(themes.theme, themeSelected)
   const newColors = findItem(themes.colors, colorSelected)
-  const newImage = findItem(themes.images, imageSelected)
+
+  //avatar
+  const newHair = findAvatarItem(themes.avatar, hairSelected, 'Hair')
+  const newGlasses = findAvatarItem(themes.avatar, glassesSelected, 'Glasses')
+  const newTShirt = findAvatarItem(themes.avatar, tShirtSelected, 'TShirt')
+  const newSkin = findAvatarItem(themes.avatar, skinSelected, 'Skin')
 
   useEffect(() => {
     setTheme(newTheme)
@@ -56,24 +83,34 @@ export function DefineThemeProvider({ children }: DefineThemeProps) {
     setColor(newColors)
   }, [colorSelected])
 
+  useEffect(() => {
+    setHair(newHair)
+  }, [hairSelected])
 
   useEffect(() => {
-    const selectedImageType = findItem(newImage.styles, colorSelected)
-    setImage({
-      ...selectedImageType,
-      name: newImage.name
-    })
-  }, [imageSelected, colorSelected])
+    setGlasses(newGlasses)
+  }, [glassesSelected])
+
+  useEffect(() => {
+    setTShirt(newTShirt)
+  }, [tShirtSelected])
+
+  useEffect(() => {
+    setSkin(newSkin)
+  }, [skinSelected])
 
   //preparando variaveis utilizadas
   const variablesTheme = {
     setThemeSelected,
     setColorSelected,
-    setImageSelected
+    setHairSelected,
+    setGlassesSelected,
+    setTShirtSelected,
+    setSkinSelected,
   }
 
   return (
-    <DefineThemeContext.Provider value={{ variablesTheme, theme, color, image }
+    <DefineThemeContext.Provider value={{ variablesTheme, theme, color, hair, glasses, tShirt, skin }
     }>
       {children}
     </DefineThemeContext.Provider >
