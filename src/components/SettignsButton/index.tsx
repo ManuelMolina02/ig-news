@@ -69,13 +69,12 @@ export function SettignsButton() {
         type="button"
         className={styles.settingButton}
         style={{ backgroundColor: theme.bgSecondary }}
-
         onClick={() => {
           setAnimation(styles.expandAnimation)
           setShowSettings(true)
         }}
       >
-        <IoMdSettings color={theme.color} />
+        <IoMdSettings color={theme.color} title="Settings" />
       </button>
 
 

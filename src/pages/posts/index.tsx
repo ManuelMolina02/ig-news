@@ -15,7 +15,6 @@ type Post = {
   title: string;
   excerpt: string;
   updatedAt: string;
-
 }
 
 interface postsProps {
@@ -29,15 +28,11 @@ export default function Posts({ posts, next_page }: postsProps) {
   const [mouseActive, setMouseActive] = useState(false)
   const [elementMouseHover, setElementMouseHover] = useState('')
 
-
-
   const [morePostsValeus, setMorePostsValues] = useState(next_page)
   const [nextPage, setNextPage] = useState(next_page)
   const [postValues, setPostValues] = useState(posts)
 
   const [loading, setLoading] = useState(false)
-
-
 
   async function handleNewPosts() {
 
@@ -46,9 +41,6 @@ export default function Posts({ posts, next_page }: postsProps) {
     setTimeout(async () => {
       try {
         const { data } = await api.get(nextPage)
-
-        //mostrar no console resultados com parse JSON
-
 
         const dataValues = Object.values<any>(data.results).map(post => {
           return {
@@ -70,6 +62,7 @@ export default function Posts({ posts, next_page }: postsProps) {
         } else {
           setNextPage(data.next_page)
         }
+
       } catch (error) {
         console.log(error);
 
@@ -78,7 +71,6 @@ export default function Posts({ posts, next_page }: postsProps) {
       }
 
     }, 1000);
-
   }
 
   function showClick() {
