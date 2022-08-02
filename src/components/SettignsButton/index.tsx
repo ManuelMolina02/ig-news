@@ -17,7 +17,7 @@ export function SettignsButton() {
   const { pathname } = useRouter();
 
   const [showSettings, setShowSettings] = useState(false);
-  const { theme, color, hair, glasses, tShirt, skin, variablesTheme } = useTheme();
+  const { theme, color, avatar, variablesTheme } = useTheme();
   const [animation, setAnimation] = useState(styles.settingsContainer);
 
   function setTheme(themeSelected: string) {
@@ -39,29 +39,15 @@ export function SettignsButton() {
   }
 
   function setAspect({ aspectSelected, title }: AvatarProps) {
+    let keyData = title.toLowerCase();
 
-    switch (title) {
-      case 'Hair':
-        variablesTheme.setHairSelected(aspectSelected);
-        localStorage.setItem('ignews-hair', aspectSelected)
-        break;
-      case 'Glasses':
-        variablesTheme.setGlassesSelected(aspectSelected);
-        localStorage.setItem('ignews-glasses', aspectSelected)
-        break;
-      case 'TShirt':
-        variablesTheme.setTShirtSelected(aspectSelected);
-        localStorage.setItem('ignews-tShirt', aspectSelected)
-        break;
-      case 'Skin':
-        variablesTheme.setSkinSelected(aspectSelected);
-        localStorage.setItem('ignews-skin', aspectSelected)
-        break;
-      default:
-        break;
-    }
+    variablesTheme.setAvatar({
+      ...avatar,
+      [keyData]: aspectSelected
+    });
+
+    localStorage.setItem(`ignews-${keyData}`, aspectSelected)
   }
-
 
   return (
     <>
@@ -76,7 +62,6 @@ export function SettignsButton() {
       >
         <IoMdSettings color={theme.color} title="Settings" />
       </button>
-
 
       {showSettings && (
         <div className={styles.settingsContainer}>
@@ -115,7 +100,6 @@ export function SettignsButton() {
               options={['analogous', 'complementary']}
             />
 
-
             {
               pathname === '/' && (
                 <>
@@ -123,7 +107,7 @@ export function SettignsButton() {
                   <h3 style={{ borderBottom: `${theme.borderColor} 1px solid` }}>Avatar </h3>
 
                   <SettingsOption
-                    keyOption={hair}
+                    keyOption={avatar.hair}
                     title={'Hair'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
@@ -131,7 +115,7 @@ export function SettignsButton() {
                   />
 
                   <SettingsOption
-                    keyOption={glasses}
+                    keyOption={avatar.glasses}
                     title={'Glasses'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
@@ -140,7 +124,7 @@ export function SettignsButton() {
 
 
                   <SettingsOption
-                    keyOption={tShirt}
+                    keyOption={avatar.tshirt}
                     title={'TShirt'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
@@ -149,19 +133,15 @@ export function SettignsButton() {
 
 
                   <SettingsOption
-                    keyOption={skin}
+                    keyOption={avatar.skin}
                     title={'Skin'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
                     options={["#684938", "#8B5F46", "#D68B61", "#FFA07A"]}
                   />
-
-
                 </>
               )
-
             }
-
 
           </div>
         </div>

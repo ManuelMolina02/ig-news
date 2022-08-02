@@ -41,34 +41,7 @@ export const themes = {
       img: "/images/girl-coding1.svg",
     },
   ],
-  images: [
-    {
-      name: "girl-coding-1",
-      styles: [
-        {
-          name: "analogous",
-          url: "/images/girl-analogous-1.svg",
-        },
-        {
-          name: "complementary",
-          url: "/images/girl-complementary-1.svg",
-        },
-      ],
-    },
-    {
-      name: "girl-coding-2",
-      styles: [
-        {
-          name: "analogous",
-          url: "/images/girl-analogous-2.svg",
-        },
-        {
-          name: "complementary",
-          url: "/images/girl-complementary-2.svg",
-        },
-      ],
-    },
-  ],
+
   avatar: [
     {
       name: "Hair",

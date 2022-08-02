@@ -14,7 +14,7 @@ interface HomeProps {
 }
 
 export default function Home({ product }: HomeProps) {
-  const { theme, hair, glasses, tShirt, skin } = useTheme()
+  const { theme, avatar } = useTheme()
 
   return (
     <div className={styles.container} style={{ backgroundColor: theme.bgPrimary }} >
@@ -36,7 +36,7 @@ export default function Home({ product }: HomeProps) {
           <SubscribeButton />
         </section>
 
-        <Svg avatar={{ hair, glasses, tShirt, skin }} />
+        <Svg avatar={avatar} />
       </main>
     </div>
   )
