@@ -9,6 +9,15 @@ interface DefineThemeProps {
 export const DefineThemeContext = createContext({} as any);
 
 export function DefineThemeProvider({ children }: DefineThemeProps) {
+  function findItem(data: Array<any>, key: string) {
+    return data.find(item => item.name === key)
+  }
+
+  function findAvatarItem(data: Array<any>, key: string, feature: string) {
+    const selectedItem = data.find(item => item.name === feature)
+    return selectedItem?.colors.find(item => item === key)
+  }
+
 
   const [themeSelected, setThemeSelected] = useState('dark');
   const [colorSelected, setColorSelected] = useState('analogous');
@@ -29,27 +38,18 @@ export function DefineThemeProvider({ children }: DefineThemeProps) {
     let tshirtLocal = localStorage.getItem('ignews-tshirt')
     let skinLocal = localStorage.getItem('ignews-skin')
 
-    setThemeSelected(theme === null ? 'dark' : theme)
-    setColorSelected(color === null ? 'analogous' : color)
+    setThemeSelected(!theme ? 'dark' : theme)
+    setColorSelected(!color ? 'analogous' : color)
 
     const aspectAvatar = {
-      hair: hairLocal === null ? '#DBAD38' : hairLocal,
-      glasses: glassesLocal === null ? '#003A7D' : glassesLocal,
-      tshirt: tshirtLocal === null ? '#EF5D5D' : tshirtLocal,
-      skin: skinLocal === null ? '#8B5F46' : skinLocal,
+      hair: !hairLocal ? '#DBAD38' : hairLocal,
+      glasses: !glassesLocal ? '#003A7D' : glassesLocal,
+      tshirt: !tshirtLocal ? '#EF5D5D' : tshirtLocal,
+      skin: !skinLocal ? '#8B5F46' : skinLocal,
     }
 
     setAvatarSelected(aspectAvatar)
   }, [])
-
-  function findItem(data: Array<any>, key: string) {
-    return data.find(item => item.name === key)
-  }
-
-  function findAvatarItem(data: Array<any>, key: string, feature: string) {
-    const selectedItem = data.find(item => item.name === feature)
-    return selectedItem?.colors.find(item => item === key)
-  }
 
   const [theme, setTheme] = useState({})
   const [color, setColor] = useState({})
@@ -89,8 +89,7 @@ export function DefineThemeProvider({ children }: DefineThemeProps) {
   }
 
   return (
-    <DefineThemeContext.Provider value={{ variablesTheme, theme, color, avatar }
-    }>
+    <DefineThemeContext.Provider value={{ variablesTheme, theme, color, avatar }}>
       {children}
     </DefineThemeContext.Provider >
   );

@@ -60,12 +60,19 @@
 
     width: 180px;
     height: 40px;
-    text-align: start;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
     background-color: transparent;
     border: none;
 
+    svg {
+      margin-left: 6px;
+    }
+
     font-size: 22px;
-    color: rgb(255, 60, 93);
   }
 }
 

@@ -42,7 +42,7 @@ export function SignInButton() {
 
   return session ? (
     <button type='button' className={styles.signInButton} style={{ backgroundColor: theme.bgSecondary, color: theme.color }} onClick={() => signOut()}>
-      <FaGithub color={theme.gitIconActive} />
+      <FaGithub color={theme.name === 'dark' ? '#04d361' : '#00ad4e'} />
       <span>{session.user.name}</span>
       <FiX color={theme.color} className={styles.closeIcon} />
 

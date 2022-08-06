@@ -1,24 +1,25 @@
-.signInButton{
-  height: 3rem;
-  border-radius: 3rem;
-  background-color: var(--gray-850);
-
-  border: 0;
-  padding: 0 1.5rem;
+.signInButton {
   display: flex;
   align-items: center;
   justify-content: center;
-    margin-left: auto;
+
+  height: 3rem;
+
+  border: 0;
+  padding: 0 1.5rem;
+  margin-left: auto;
 
   font-weight: bold;
 
-  animation: expandRight .25s ease-out;
+  animation: expandRight 0.25s ease-out;
+  border-radius: 3rem;
+  background-color: var(--gray-850);
 
   span {
-   animation: showText .3s linear;
+    animation: showText 0.3s linear;
   }
-  
-  transition: filter .2s;
+
+  transition: filter 0.2s;
 
   svg {
     width: 20px;
@@ -29,23 +30,19 @@
     margin-right: 1rem;
   }
 
-  svg.closeIcon{
+  svg.closeIcon {
     margin-left: 1rem;
   }
 
   &:hover {
-    filter: brightness(.8);
+    filter: brightness(0.8);
+  }
 }
-
-
-}
-
 
 @keyframes expandRight {
   0% {
     width: 0%;
-
-  } 
+  }
 
   100% {
     width: 100%;
@@ -53,20 +50,19 @@
 }
 
 @keyframes showText {
-  0%{
+  0% {
     position: relative;
     z-index: -10;
     color: transparent;
   }
+  
   85% {
     transform: scale(0);
-
   }
 
-  100%{
+  100% {
     position: relative;
     z-index: 1;
     transform: scale(1);
-
   }
 }

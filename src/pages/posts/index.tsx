@@ -155,7 +155,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const response = await prismic.getByType('posts', {
     fetch: ['posts.title', 'posts.content'],
-    pageSize: 1,
+    pageSize: 3,
     page: 1,
   });
 
@@ -175,6 +175,6 @@ export const getStaticProps: GetStaticProps = async () => {
       posts,
       next_page: response.next_page,
     },
-    //revalidate: 60 * 60 * 24 * 7 // 1 week, 
+    revalidate: 60 * 60 * 24 * 7 // 1 week, 
   }
 }

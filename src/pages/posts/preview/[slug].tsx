@@ -41,7 +41,7 @@ export default function PostPreview({ post }: PostPreviewProps) {
 
       <main className={styles.postContainer}>
         <article className={styles.post}>
-          <h1>{post.title}</h1>
+          <h1 >{post.title}</h1>
           <time>{post.updatedAt}</time>
           <div
             className={`${styles.postContent} ${styles.postPreview}`}

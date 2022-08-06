@@ -79,7 +79,7 @@ export function SettignsButton() {
             style={{
               backgroundColor: theme.bgSecondary,
               color: theme.color,
-              maxHeight: pathname === '/' ? "520px" : "382px",
+              maxHeight: pathname === '/' ? "514px" : "208px",
             }}
           >
             <h3 style={{ borderBottom: `${theme.borderColor} 1px solid` }}>Settings</h3>

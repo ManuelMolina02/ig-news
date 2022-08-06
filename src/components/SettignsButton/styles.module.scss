@@ -1,17 +1,17 @@
 .settingButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   height: 3rem;
   border-radius: 3rem;
   background-color: var(--gray-850);
 
   border: 0;
   padding: 0 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   color: var(--white);
   font-weight: bold;
-
 
   svg {
     width: 20px;
@@ -22,9 +22,7 @@
 
   &:hover {
     filter: brightness(0.8);
-
-  }
-  
+  }  
 }
 .settingsContainer{
   
@@ -36,9 +34,7 @@
     height: 100vh;
     overflow: hidden;
 
-    z-index: 10;
-   // background-color: #00000062;
-  
+    z-index: 10;  
   }
 
   .expandAnimation{
@@ -66,7 +62,6 @@
 
   .settingsContent{
     width: 218px;
-    max-height: 514px !important;
     position: absolute;
     z-index: 100;
     top: 16px;
@@ -86,7 +81,6 @@
     }
 
     
-
     div {
       strong {
         font-size: 16px;
@@ -163,3 +157,4 @@
     opacity: 0;
   }
 }
+

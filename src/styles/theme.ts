@@ -7,45 +7,37 @@ export const themes = {
 
       color: "#e5e5e5",
       bgHover: "#ffffff12",
-
       constrastColor: "#ffffffcb",
-      shadow: "0px 0px 10px 2px #5050504f",
-
-      gitIconActive: "#04d361",
       borderColor: "#626262",
     },
     {
       name: "light",
       bgPrimary: "#e5e5e5",
       bgSecondary: "#c6d0d3",
-
       color: "#4A5568",
-
       bgHover: "#c5c5c57a",
-
       constrastColor: "#ffffffcb",
-      shadow: "0px 0px 10px 2px #5050504f",
-
-      gitIconActive: "#00ad4e",
     },
   ],
   colors: [
     {
       name: "complementary",
-      primary: "#eba417",
-      img: "/images/girl-coding2.svg",
+      primary: "#e7a31c",
     },
     {
       name: "analogous",
       primary: "#c40d6f",
-      img: "/images/girl-coding1.svg",
+    },
+    {
+      name: "marine",
+      primary: "#c40d6f",
     },
   ],
 
   avatar: [
     {
       name: "Hair",
-      colors: ["#263238", "#DBAD38", "#740700"],
+      colors: ["#263238", "#DBAD38", "#740700", "#FF5858", "#777777"],
     },
     {
       name: "Glasses",
