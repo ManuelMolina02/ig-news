@@ -7,6 +7,8 @@ import { IoMdSettings } from "react-icons/io";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 
+import { themes } from "../../styles/theme";
+
 interface AvatarProps {
   aspectSelected: string;
   title: string;
@@ -82,14 +84,14 @@ export function SettignsButton() {
               maxHeight: pathname === '/' ? "514px" : "208px",
             }}
           >
-            <h3 style={{ borderBottom: `${theme.borderColor} 1px solid` }}>Settings</h3>
+            <h3 style={{ borderColor: theme.borderColor }}>Settings</h3>
 
             <SettingsOption
               keyOption={theme.name}
               title={'theme'}
               action={setTheme}
               useStyles={{ theme, color }}
-              options={['dark', 'light']}
+              options={themes.theme.map(data => data.name)}
             />
 
             <SettingsOption
@@ -97,7 +99,7 @@ export function SettignsButton() {
               title={'colors'}
               action={setColor}
               useStyles={{ theme, color }}
-              options={['analogous', 'complementary']}
+              options={themes.colors.map(data => data.name)}
             />
 
             {
@@ -111,7 +113,7 @@ export function SettignsButton() {
                     title={'Hair'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
-                    options={["#263238", "#DBAD38", "#740700"]}
+                    options={themes.avatar[0].colors}
                   />
 
                   <SettingsOption
@@ -119,7 +121,7 @@ export function SettignsButton() {
                     title={'Glasses'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
-                    options={["#1C1C1C", "#003A7D", "#8B4300", "#980049", "#49002C"]}
+                    options={themes.avatar[1].colors}
                   />
 
 
@@ -128,7 +130,7 @@ export function SettignsButton() {
                     title={'TShirt'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
-                    options={["#EF5D5D", "#AA0052", "#00AA81"]}
+                    options={themes.avatar[2].colors}
                   />
 
 
@@ -137,7 +139,7 @@ export function SettignsButton() {
                     title={'Skin'}
                     avatarAction={setAspect}
                     useStyles={{ theme, color }}
-                    options={["#684938", "#8B5F46", "#D68B61", "#FFA07A"]}
+                    options={themes.avatar[3].colors}
                   />
                 </>
               )
@@ -147,5 +149,5 @@ export function SettignsButton() {
         </div>
       )}
     </>
-  );
+  )
 }

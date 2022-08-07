@@ -30,7 +30,7 @@ export const themes = {
     },
     {
       name: "marine",
-      primary: "#c40d6f",
+      primary: "#0072B5",
     },
   ],
 
